@@ -22,13 +22,12 @@ function hayAciertos($series) {
 }
 
 function arrayAciertos($series) {
+    $seriesAcertadas[][] = 0;
     foreach($series as $i => $numeros){
         foreach($numeros as $j => $numero){
             if($series[$i][4] == $series[$i][5]){
                 $seriesAcertadas[$i][$j] = $numero; 
-            } else {
-                $seriesAcertadas;
-            }
+            } 
         }
     }
     return $seriesAcertadas;
@@ -39,8 +38,9 @@ $series = $_POST['series'];
 $hayAciertos = hayAciertos($series);
 
 if($hayAciertos){
-    $aciertos = arrayAciertos($series);
-    include "vistas/solucion.php";    
+    $aciertos = arrayAciertos($series);   
 } else {
-    include "vistas/sinaciertos.php";
+    $aciertos = "No hay aciertos";
 }
+
+include "vistas/solucion.php";
