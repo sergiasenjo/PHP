@@ -2,13 +2,11 @@
     function compruebaPosicion($minas, $a, $b){
         $x = $a - 1;
         $posicionCorrecta = true;
-        while($x <= $a + 1 || !$posicionCorrecta){            
+        while($x <= $a + 1 && $posicionCorrecta){            
             $y = $b - 1;
-            while($y <= $b + 1 || !$posicionCorrecta){
-                if(isset($minas[$x][$y]) && $minas[$x][$y] == "X"){
+            while($y <= $b + 1 && $posicionCorrecta){
+                if(isset($minas[$x][$y])){
                     $posicionCorrecta = false;
-                } else {
-                    $posicionCorrecta = true;
                 }
                 $y++;
             }
@@ -34,13 +32,6 @@
     }
 
     $jugada = $_POST['jugada'];   
-    
-    // Inicialización de las minas
-//    for($a = 0; $a < 10; $a++){
-//        for($b = 0; $b < 10; $b++){
-//            $minas[$i][$j] = "";
-//        }
-//    }
     
     // Generación de la primera mina
     $a = rand(0,9);
