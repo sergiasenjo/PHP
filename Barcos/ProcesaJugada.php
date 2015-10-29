@@ -1,34 +1,64 @@
 <?php
-    function compruebaPosicion($minas, $a, $b){
-        $x = $a - 1;
-        $posicionCorrecta = true;
-        while($x <= $a + 1 || !$posicionCorrecta){
-            $y = $b - 1;
-            while($y <= $b + 1 || !$posicionCorrecta){
-                if(!isset($minas[$x][$y]) || $minas[$x][$y] == $minas[$a][$b] || $minas[$x][$y] == ""){
-                    $posicionCorrecta = true;
-                } else {
-                    $posicionCorrecta = false;
+    function compruebaPosicion($barcos, $a, $b, $dir){
+        
+        if($dir){
+            for($i = 0; $i < $size; $i++){
+                if(!isset($barcos[$a][$b])){
+                    $barcos[$a + $i][$b] = "X";
                 }
-                $y++;
             }
-            $x++;
-        }        
+        }
+        
         return $posicionCorrecta;
     }
 
-    function generaMinas($barcos){        
+    function generaBarcos($size, $direccion, $barcos){        
+        
+        if($direccion){    // Si la dirección es hacia arriba             
+            $a = rand(0,7);
+            $b = rand(0,9);            
+            for($i = 0; $i < $size; $i++){
+                $barcos[$a + $i][$b] = "X";                   
+            }            
+        } else{            // Si la dirección es hacia la derecha
+            $a = rand(0,9);
+            $b = rand(0,7);
+            for($i = 0; $i < $size; $i++){
+                $barcos[$a][$b + $i] = "X";
+            } 
+        }
         
         return $barcos;
     }
 
     $jugada = $_POST['jugada'];   
     
-    // Generación del primer barco
-    $a = rand(0,9);
-    $b = rand(0,9);        
-    $barcos[$a][$b] = "X";
+    // Contador de jugadas
+    $contJugada = 0;
+    foreach($jugada as $fila => $filas){
+        foreach($filas as $columna => $valor){
+            if($jugada[$fila][$columna] == "X"){
+                $contJugada++;
+            }
+        }        
+    }
     
-    $minas = generaBarcos($barcos);
+    if (!isset($_POST['botonenvio'])) {
+        header('Location: http://localhost:8000');
+    }
     
-    include "vistas/resultado.php";
+    if($contJugada <= 10){
+        // Inicializamos barcos
+        $barcos = [];
+        // Generación de los barcos
+            $barcos = generaBarcos(3, rand(0,1), $barcos);
+            $barcos = generaBarcos(2, rand(0,1), $barcos);
+            $barcos = generaBarcos(2, rand(0,1), $barcos);
+            $barcos = generaBarcos(1, rand(0,1), $barcos);
+            $barcos = generaBarcos(1, rand(0,1), $barcos);
+            $barcos = generaBarcos(1, rand(0,1), $barcos);
+
+        include "vistas/resultado.php";
+    } else{
+        header('Location: http://localhost:8000');
+    }
