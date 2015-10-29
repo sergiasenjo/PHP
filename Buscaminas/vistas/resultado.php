@@ -7,12 +7,14 @@
     <body>
         <table>
         <?php
+            $aciertos = 0;
             foreach($jugada as $fila => $filas){
                 echo "<tr>";
                 foreach($filas as $columna => $valor){
                     if(isset($minas[$fila][$columna])){
                         if($minas[$fila][$columna] == $valor){
                             echo "<td><input type='text' value='X' size='1' readonly/></td>";
+                            $aciertos++;
                         } else {
                             echo "<td><input type='text' value='*' size='1' readonly/></td>";
                         }
@@ -28,6 +30,10 @@
             }
         ?>
         </table>
+        <br>
+        <?php
+            echo "<h2>Número de aciertos: $aciertos</h2>";
+        ?>
         <br>
         <form name="FormVolver" action="../index.php" method="POST">
             <?php
