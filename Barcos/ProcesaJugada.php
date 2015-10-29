@@ -1,17 +1,4 @@
 <?php
-    function compruebaPosicion($barcos, $a, $b, $dir){
-        
-        if($dir){
-            for($i = 0; $i < $size; $i++){
-                if(!isset($barcos[$a][$b])){
-                    $barcos[$a + $i][$b] = "X";
-                }
-            }
-        }
-        
-        return $posicionCorrecta;
-    }
-
     function generaBarcos($size, $direccion, $barcos){        
         
         if($direccion){    // Si la dirección es hacia arriba             
