@@ -33,6 +33,9 @@
 
     $jugada = $_POST['jugada'];
     
+    // Inicializamos el array minas
+    $minas = [];
+    
     // Contador de jugadas
     $contJugada = 0;
     foreach($jugada as $fila => $filas){
@@ -49,10 +52,6 @@
     
     // Controlador de numero de jugadas permitidas
     if($contJugada <= 10){
-        // Generación de la primera mina
-        $a = rand(0,9);
-        $b = rand(0,9);        
-        $minas[$a][$b] = "X";
 
         $minas = generaMinas($minas);
 
