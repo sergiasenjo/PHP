@@ -17,7 +17,7 @@
 
     function generaMinas($minas){
         $posicionCorrecta = true;
-        $contador = 1;
+        $contador = 0;
         while($contador < 10){
             $a = rand(0,9);
             $b = rand(0,9);
