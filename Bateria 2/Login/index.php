@@ -4,7 +4,7 @@
     $userCred = ["user" => "pepe", "pass" => "pepe"];
     $credIncorrectas = false;
     
-    if(isset($_SESSION['credenciales']['user'])){
+    if(isset($_SESSION['credenciales'])){
         if(isset($_POST['botonlogout'])) {
             session_unset();
             session_destroy();
