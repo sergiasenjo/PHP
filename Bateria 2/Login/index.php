@@ -4,7 +4,7 @@
     $userCred = ["user" => "pepe", "pass" => "pepe"];
     $credIncorrectas = false;
     
-    if(isset($_SESSION['user'])){
+    if(isset($_SESSION['credenciales']['user'])){
         if(isset($_POST['botonlogout'])) {
             session_unset();
             session_destroy();
@@ -27,6 +27,7 @@
                     include "vistas/content.php";
                 } else {
                     $credIncorrectas = true;
+                    session_unset();
                     include "vistas/login.php";
                 }
             }            

@@ -6,7 +6,7 @@
     </head>
     <body>
         <?php
-            echo "<h1>Bienvenido $user</h1>";
+            echo "<h1>Bienvenido " . $_SESSION['credenciales']['user'] . "</h1>";
         ?>
         <br>
         <form name="FormLogout" action="index.php" method="POST">
