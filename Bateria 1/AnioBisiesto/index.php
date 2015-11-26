@@ -6,7 +6,7 @@
         <link rel="stylesheet" type="text/css" href="stylesheet.css">
     </head>
     <body>
-        <h1>Año bisiesto</h1>
+        <h1>Año bisiesto prueba</h1>
         <div class="capaform">            
             <form name="FormNumeros" action="ProcesaBisiesto.php" method="POST">
                     <div class="form-section">
